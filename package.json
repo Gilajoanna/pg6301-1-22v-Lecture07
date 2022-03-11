@@ -4,6 +4,8 @@
   "description": "MongoDB with React and Express",
   "main": "index.js",
   "scripts": {
+    "build": "npm run build:server",
+    "build:server": "cd server && npm run build",
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
