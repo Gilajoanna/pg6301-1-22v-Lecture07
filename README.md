@@ -1,11 +1,11 @@
 #MongoDB with React and Express
 
-* [] React and Express App
-  * [] npm init && npm install
-* [] Deploy to Heroku via Heroku GIT instead of GitHub
-  * [] Heroku commandline tool
-  * [] Heroku login
-  * [] Heroku git remote
+* [x] React and Express App
+  * [x] npm init && npm install
+* [x] Deploy to Heroku via Heroku GIT instead of GitHub
+  * [x] Heroku commandline tool
+  * [x] Heroku login
+  * [x] Heroku git remote
 * [] React frontend router
   * [] list movies - with express API router
   * [] Add new movie - with express API
