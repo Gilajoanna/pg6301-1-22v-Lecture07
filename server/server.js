@@ -11,11 +11,12 @@ const app = express();
 const mongoClient = new MongoClient(process.env.MONGODB_URL);
 mongoClient.connect().then(async () => {
     console.log("Connected to mongodb")
-    const databases = await mongoClient.db().admin().listDatabases();
-    console.log(databases);
-});
+    //const databases = await mongoClient.db().admin().listDatabases();
+    //console.log(databases);
 
-app.use("/api/movies", MoviesApi());
+    app.use("/api/movies", MoviesApi(mongoClient.db("pg6301-lecture07")));
+
+});
 
 app.use(express.static("../client/dist/"));
 app.use((req, res, next) => {
