@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
+import {useEffect, useState} from "react";
 
 function FrontPage() {
     return (
@@ -14,7 +15,50 @@ function FrontPage() {
     );
 }
 
+function useLoading(loadingFunction) {
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState();
+    const [data, setData] = useState();
+
+    //Denna funktionen säger att vi nu är i färd med och laste, så ska vi sätta resultatet
+    //av loadingFunctionen. Vi måste vänta till loadingFunktionen är färdig.
+    //Om det kommer en fel så ska vi sätta och hantera den felen
+    //Vi är sen färdiga med och laste och sätter loading till false.
+    async function load() {
+        try {
+            setLoading(true);
+            setData(await loadingFunction());
+        } catch(error) {
+            setError(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+    //Utför load funktionen blir kallad.
+    useEffect(() => {
+        load();
+    });
+
+    return { loading, error, data };
+}
+
 function ListMovies() {
+    const { loading, error, data } = useLoading();
+
+    //När vi laddar ska vi visa en loading page
+    if(loading) {
+        return <div>Loading...</div>;
+    }
+
+    if(error) {
+        return (
+            <div>
+            <h1>Error</h1>
+            <div>{error.toString()}</div>
+        </div>
+        );
+    }
+
     return (
         <div>
             <h1>Movies in database</h1>
