@@ -3,7 +3,7 @@
 * [] React and Express App
   * [] npm init && npm install
 * [] Deploy to Heroku via Heroku GIT instead of GitHub
-  * [] Heroku commanline tool
+  * [] Heroku commandline tool
   * [] Heroku login
   * [] Heroku git remote
 * [] React frontend router
