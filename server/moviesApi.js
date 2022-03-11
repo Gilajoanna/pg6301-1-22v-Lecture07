@@ -1,14 +1,5 @@
 import {Router} from "express";
 
-const movies = [
-    {
-        title: "Movie 1",
-    },
-    {
-        title: "Movie 2",
-    },
-]
-
 export function MoviesApi(mongoDatabase) {
     const router = new Router();
 
