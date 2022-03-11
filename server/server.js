@@ -1,7 +1,27 @@
-import express from "express";
+import express, {Router} from "express";
 import * as path from "path";
 
 const app = express();
+
+function MoviesApi() {
+    const router = new Router();
+
+    router.get("/", (req, res) => {
+        res.json([
+            {
+                title: "Movie 1",
+            },
+        ])
+    });
+
+    router.post("/new", (req, res) => {
+        res.sendStatus(500);
+    });
+
+    return router;
+}
+
+app.use("/api/movies", MoviesApi());
 
 app.use(express.static("../client/dist/"));
 app.use((req, res, next) => {
