@@ -37,13 +37,23 @@ function useLoading(loadingFunction) {
     //Utför load funktionen blir kallad.
     useEffect(() => {
         load();
-    });
+    }, []);
 
     return { loading, error, data };
 }
 
+async function fetchJSON(url) {
+    const res = await fetch(url)
+    if(!res.ok) {
+        throw new Error(`Failed to load ${res.status}: ${res.statusText}`);
+    }
+    return await res.json();
+}
+
 function ListMovies() {
-    const { loading, error, data } = useLoading();
+    const { loading, error, data } = useLoading(async () =>
+        fetchJSON("/api/movies")
+    );
 
     //När vi laddar ska vi visa en loading page
     if(loading) {
