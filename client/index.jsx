@@ -50,9 +50,9 @@ async function fetchJSON(url) {
     return await res.json();
 }
 
-function MovieCard({ movie: {title, plot, poster} }) {
+function MovieCard({ movie: {title, year, plot, poster} }) {
     return <div>
-        <h3>{ title }</h3>
+        <h3>{ title } ({ year })</h3>
         {poster && <img src={ poster } width={100} alt={"Movie Poster"}/>}
         <div>{ plot }</div>
     </div>;
@@ -109,10 +109,10 @@ function AddNewMovie() {
 
     async function handleSubmit(e) {
         e.preventDefault();
-        await postJSON("/api/movies", {
+        await postJSON("/api/movies/new", {
             title,
             year,
-            country,
+            countries: [country],
             plot
         });
     }
