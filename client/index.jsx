@@ -87,11 +87,61 @@ function ListMovies() {
     );
 }
 
+async function postJSON(url, body) {
+    const response = await fetch(url, {
+        method: "post",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+
+    if(!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+    }
+}
+
 function AddNewMovie() {
+    const [title, setTitle] = useState("");
+    const [year, setYear] = useState();
+    const [country, setCountry] = useState("");
+    const [plot, setPlot] = useState("");
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        await postJSON("/api/movies", {
+            title,
+            year,
+            country,
+            plot
+        });
+    }
+
     return (
-        <form>
+        <div>
             <h1>Add new movie</h1>
-        </form>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label>Title:</label>
+                    <input type={"text"} name={"title"} onChange={e => setTitle(e.target.value)}/>
+                </div>
+                <div>
+                    <label>Year:</label>
+                    <input type={"number"} name={"year"} onChange={e => setYear(e.target.value)}/>
+                </div>
+                <div>
+                    <label>Country:</label>
+                    <input type={"text"} name={"country"} onChange={e => setCountry(e.target.value)}/>
+                </div>
+                <div>
+                    <label>Plot:</label>
+                    <textarea name={"plot"} onChange={e => setPlot(e.target.value)}/>
+                </div>
+                <div>
+                    <button type={"submit"}>Submit</button>
+                </div>
+            </form>
+        </div>
     );
 }
 

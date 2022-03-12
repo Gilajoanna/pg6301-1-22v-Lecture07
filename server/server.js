@@ -14,7 +14,7 @@ mongoClient.connect().then(async () => {
     //const databases = await mongoClient.db().admin().listDatabases();
     //console.log(databases);
 
-    app.use("/api/movies", MoviesApi(mongoClient.db(process.env.MONGODB_DATABASE)));
+    app.use("/api/movies", MoviesApi(mongoClient.db(process.env.MONGODB_DATABASE || "pg6301-lecture07")));
 
 });
 
