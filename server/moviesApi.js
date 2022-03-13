@@ -7,15 +7,16 @@ export function MoviesApi(mongoDatabase) {
         const movies = await mongoDatabase.collection("movies")
             .find({
                 countries: {
-                    $in: ["Ukraine"],
+                    $in: ["Sweden"],
                 },
                 year: {
-                    $gte: 2000,
+                    $gte: 1991,
                 }
             })
             .sort({
-                metacritic: -1,
-            })
+                metacritic: -1
+            }
+            )
             .map(({title, year, plot, poster}) =>
                 ({title, year, plot, poster}))
             .limit(100)

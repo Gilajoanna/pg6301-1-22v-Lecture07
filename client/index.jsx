@@ -50,6 +50,20 @@ async function fetchJSON(url) {
     return await res.json();
 }
 
+async function postJSON(url, body) {
+    const response = await fetch(url, {
+        method: "post",
+        headers: {
+            "content-type": "application/json",
+        },
+        body: JSON.stringify(body),
+    });
+
+    if(!response.ok) {
+        throw new Error(`${response.status}: ${response.statusText}`)
+    }
+}
+
 function MovieCard({ movie: {title, year, plot, poster} }) {
     return <div>
         <h3>{ title } ({ year })</h3>
@@ -80,25 +94,12 @@ function ListMovies() {
     return (
         <div>
             <h1>Movies in database</h1>
+
                 {data.map((movie) => (
                     <MovieCard key={movie.title} movie={movie}/>
                 ))}
         </div>
     );
-}
-
-async function postJSON(url, body) {
-    const response = await fetch(url, {
-        method: "post",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(body),
-    });
-
-    if(!response.ok) {
-        throw new Error(`${response.status}: ${response.statusText}`)
-    }
 }
 
 function AddNewMovie() {
@@ -115,6 +116,10 @@ function AddNewMovie() {
             countries: [country],
             plot
         });
+        setTitle("");
+        setYear("");
+        setPlot("");
+        setCountry("");
     }
 
     return (
