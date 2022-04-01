@@ -1,7 +1,8 @@
 import * as React from "react";
+import {useState} from "react";
 import * as ReactDOM from "react-dom";
 import {BrowserRouter, Link, Route, Routes} from "react-router-dom";
-import {useEffect, useState} from "react";
+import {ListMovies} from "./listMovies";
 
 function FrontPage() {
     return (
@@ -13,33 +14,6 @@ function FrontPage() {
             </ul>
         </div>
     );
-}
-
-function useLoading(loadingFunction) {
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState();
-    const [data, setData] = useState();
-
-    //Denna funktionen säger att vi nu är i färd med och laste, så ska vi sätta resultatet
-    //av loadingFunctionen. Vi måste vänta till loadingFunktionen är färdig.
-    //Om det kommer en fel så ska vi sätta och hantera den felen
-    //Vi är sen färdiga med och laste och sätter loading till false.
-    async function load() {
-        try {
-            setLoading(true);
-            setData(await loadingFunction());
-        } catch(error) {
-            setError(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-    //Utför load funktionen blir kallad.
-    useEffect(() => {
-        load();
-    }, []);
-
-    return { loading, error, data };
 }
 
 async function fetchJSON(url) {
@@ -62,42 +36,6 @@ async function postJSON(url, body) {
     if(!response.ok) {
         throw new Error(`${response.status}: ${response.statusText}`)
     }
-}
-
-function MovieCard({ movie: {title, year, plot, poster} }) {
-    return <div>
-        <h3>{ title } ({ year })</h3>
-        {poster && <img src={ poster } width={100} alt={"Movie Poster"}/>}
-        <div>{ plot }</div>
-    </div>;
-}
-
-function ListMovies({listMovies}) {
-    const { loading, error, data } = useLoading(listMovies);
-
-    //När vi laddar ska vi visa en loading page
-    if(loading) {
-        return <div>Loading...</div>;
-    }
-
-    if(error) {
-        return (
-            <div>
-            <h1>Error</h1>
-            <div>{error.toString()}</div>
-        </div>
-        );
-    }
-
-    return (
-        <div>
-            <h1>Movies in database</h1>
-
-                {data.map((movie) => (
-                    <MovieCard key={movie.title} movie={movie}/>
-                ))}
-        </div>
-    );
 }
 
 function AddNewMovie() {
