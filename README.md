@@ -6,12 +6,23 @@
   * [x] Heroku commandline tool
   * [x] Heroku login
   * [x] Heroku git remote
-* [] React frontend router
-  * [] list movies - with express API router
-  * [] Add new movie - with express API
-* [] MongoDB
-  * [] Sign up with Atlas
-  * [] Explore with MongoDB Compass
-  * [] List Movies from MongoDB
+* [x] React frontend router
+  * [x] list movies - with express API router
+  * [x] Add new movie - with express API
+* [x] MongoDB
+  * [x] Sign up with Atlas
+  * [x] Explore with MongoDB Compass
+  * [x] List Movies from MongoDB
   * [] Add new movies in MongoDB
+
+## Lecture 10
+* [] Restructure frontend to allow for testing
+* [] Implement test for <ListMovies />
+* [] Run test on Github
+  * [] Coverage report jest-coverage-report-action
+* [] Backend test - mongodb
+* [] Github actions with backend with MongoDB
+* [] Backend: Insert test first
+* [] Frontend test for insert
+* [] useContext React Context for testing
 
