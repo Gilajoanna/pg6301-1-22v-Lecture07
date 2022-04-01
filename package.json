@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Gilajoanna/pg6301-1-22v-Lecture07#readme",
   "devDependencies": {
-    "concurrently": "^7.0.0"
+    "concurrently": "^7.0.0",
+    "prettier": "^2.6.1"
   }
 }

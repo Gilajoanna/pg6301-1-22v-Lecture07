@@ -72,10 +72,8 @@ function MovieCard({ movie: {title, year, plot, poster} }) {
     </div>;
 }
 
-function ListMovies() {
-    const { loading, error, data } = useLoading(async () =>
-        fetchJSON("/api/movies")
-    );
+function ListMovies({listMovies}) {
+    const { loading, error, data } = useLoading(listMovies);
 
     //När vi laddar ska vi visa en loading page
     if(loading) {
@@ -151,11 +149,15 @@ function AddNewMovie() {
 }
 
 function Application() {
+    async function listMovies() {
+        return await fetchJSON("/api/movies");
+    }
+
     return (
         <BrowserRouter>
             <Routes>
                 <Route path={"/"} element={<FrontPage/>}/>
-                <Route path={"/movies"} element={<ListMovies/>}/>
+                <Route path={"/movies"} element={<ListMovies listMovies={listMovies}/>}/>
                 <Route path={"/movies/new"} element={<AddNewMovie/>}/>
             </Routes>
         </BrowserRouter>
