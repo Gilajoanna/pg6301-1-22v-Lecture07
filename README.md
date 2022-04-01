@@ -16,8 +16,8 @@
   * [] Add new movies in MongoDB
 
 ## Lecture 10
-* [] Restructure frontend to allow for testing
-* [] Implement test for <ListMovies />
+* [x] Restructure frontend to allow for testing
+* [x] Implement test for <ListMovies />
 * [] Run test on Github
   * [] Coverage report jest-coverage-report-action
 * [] Backend test - mongodb
