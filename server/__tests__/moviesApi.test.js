@@ -17,10 +17,9 @@ beforeAll(async () => {
 describe("movies api", function () {
   it("Lists existing movies", async () => {
     expect(
-      await request(app)
-        .get("/api/movies")
-        .expect(200)
-        .body.map(({ title }) => title)
+      (await request(app).get("/api/movies").expect(200)).body.map(
+        ({ title }) => title
+      )
     ).toContain("Force Majeure");
   });
 });
