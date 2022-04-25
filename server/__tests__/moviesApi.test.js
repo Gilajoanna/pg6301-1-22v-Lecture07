@@ -11,6 +11,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const mongoClient = new MongoClient(process.env.MONGODB_URL);
+
 beforeAll(async () => {
   await mongoClient.connect();
   const database = mongoClient.db("test_database");
