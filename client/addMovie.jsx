@@ -16,7 +16,7 @@ function FormInput({ label, value, onChangeValue }) {
   );
 }
 
-export function AddNewMovie() {
+export function AddNewMovie({ createMovie }) {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState();
   const [country, setCountry] = useState("");
@@ -24,6 +24,7 @@ export function AddNewMovie() {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    createMovie({ title });
     await postJSON("/api/movies/new", {
       title,
       year,
@@ -49,6 +50,7 @@ export function AddNewMovie() {
           onChangeValue={setCountry}
         />
         <FormInput label={"Plot:"} value={plot} onChangeValue={setPlot} />
+        <button type={"submit"}>Submit</button>
       </form>
     </div>
   );
