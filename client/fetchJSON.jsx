@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export async function fetchJSON(url) {
   const res = await fetch(url);
   if (!res.ok) {

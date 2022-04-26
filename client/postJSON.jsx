@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export async function postJSON(url, body) {
   const response = await fetch(url, {
     method: "post",
