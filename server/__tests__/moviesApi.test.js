@@ -33,7 +33,7 @@ describe("movies api", function () {
       })
       .expect(200);
     expect(
-      (await request(app).get("/api/movies/new").expect(200)).body.map(
+      (await request(app).get("/api/movies").expect(200)).body.map(
         ({ title }) => title
       )
     ).toContain("My test movie");

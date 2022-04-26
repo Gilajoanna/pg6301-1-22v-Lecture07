@@ -23,7 +23,7 @@ export function MoviesApi(mongoDatabase) {
     res.json(movies);
   });
 
-  router.post("/new", (req, res) => {
+  router.post("/", (req, res) => {
     const { title, country, year } = req.body;
     const result = mongoDatabase.collection("movies").insertOne({
       title,
