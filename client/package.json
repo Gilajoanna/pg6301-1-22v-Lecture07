@@ -16,7 +16,8 @@
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",
     "jest-babel": "^1.0.1",
-    "parcel": "^2.3.2"
+    "parcel": "^2.3.2",
+    "util": "^0.12.4"
   },
   "dependencies": {
     "@parcel/transformer-react-refresh-wrap": "^2.3.2",

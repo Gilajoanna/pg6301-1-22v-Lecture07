@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import { AddNewMovie } from "../addMovie.jsx";
+import { AddNewMovie } from "../application.jsx";
 import { Simulate } from "react-dom/test-utils";
 
 describe("add movie component", () => {

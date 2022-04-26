@@ -1,7 +1,7 @@
 import request from "supertest";
 import express from "express";
 import { MongoClient } from "mongodb";
-import { MoviesApi } from "../moviesApi";
+import { MoviesApi } from "../moviesApi.js";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 
@@ -33,7 +33,7 @@ describe("movies api", function () {
       })
       .expect(200);
     expect(
-      (await request(app).get("/api/movies").expect(200)).body.map(
+      (await request(app).get("/api/movies/new").expect(200)).body.map(
         ({ title }) => title
       )
     ).toContain("My test movie");
