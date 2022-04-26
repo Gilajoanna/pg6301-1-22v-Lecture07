@@ -1,10 +1,8 @@
 import * as React from "react";
-import { useState } from "react";
 import * as ReactDOM from "react-dom";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ListMovies } from "./listMovies";
 import { fetchJSON } from "./fetchJSON";
-import { postJSON } from "./postJSON";
 import { AddNewMovie } from "./addMovie";
 
 function FrontPage() {

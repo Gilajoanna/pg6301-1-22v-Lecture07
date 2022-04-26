@@ -23,6 +23,6 @@
 * [x] Backend test - mongodb
 * [x] Github actions with backend with MongoDB
 * [x] Backend: Insert test first
-* [] Frontend test for insert
+* [x] Frontend test for insert
 * [] useContext React Context for testing
 
