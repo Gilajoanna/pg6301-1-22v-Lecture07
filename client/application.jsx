@@ -1,7 +1,7 @@
 import * as React from "react";
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import { ListMovies } from "./listMovies";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 function FrontPage() {
   return (
@@ -33,21 +33,17 @@ function FormInput({ label, value, onChangeValue }) {
   );
 }
 
-export function AddNewMovie({ createMovie }) {
+export function AddNewMovie() {
+  const { createMovie } = useContext(MovieApiContext);
   const [title, setTitle] = useState("");
-  const [year, setYear] = useState();
+  const [year, setYear] = useState(0);
   const [country, setCountry] = useState("");
   const [plot, setPlot] = useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
-    createMovie({ title });
-    await postJSON("/api/movies/new", {
-      title,
-      year,
-      countries: [country],
-      plot,
-    });
+    await createMovie({ title, year, plot, country });
+
     setTitle("");
     setYear("");
     setPlot("");
@@ -72,6 +68,15 @@ export function AddNewMovie({ createMovie }) {
     </div>
   );
 }
+
+export const MovieApiContext = React.createContext({
+  async listMovies(country) {
+    return fetchJSON(`/api/movies?country=${country}`);
+  },
+  async createMovie(movie) {
+    postJSON("/api/movies", movie);
+  },
+});
 
 export async function postJSON(url, body) {
   const response = await fetch(url, {
