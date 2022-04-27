@@ -11,7 +11,7 @@ describe("ListMovies component", () => {
   });
 
   it("shows movies", async () => {
-    const movies = [{ title: "movie 1" }, { title: "movie 2" }];
+    const movies = [{ title: "movie 1 ()" }, { title: "movie 2 ()" }];
     const domElement = document.createElement("div");
     await act(async () => {
       ReactDOM.render(<ListMovies listMovies={() => movies} />, domElement);
