@@ -74,7 +74,7 @@ export const MovieApiContext = React.createContext({
     return fetchJSON(`/api/movies?country=${country}`);
   },
   async createMovie(movie) {
-    postJSON("/api/movies", movie);
+    await postJSON("/api/movies", movie);
   },
 });
 

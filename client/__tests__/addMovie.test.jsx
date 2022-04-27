@@ -33,7 +33,7 @@ describe("add movie component", () => {
     Simulate.change(element.querySelector("form div:nth-of-type(2) input"), {
       target: { value: "2022" },
     });
-    Simulate.submit(element.querySelector("form"));
+    await act(async () => Simulate.submit(element.querySelector("form")));
     expect(createMovie).toBeCalledWith({
       title: "Test",
       year: "2022",
