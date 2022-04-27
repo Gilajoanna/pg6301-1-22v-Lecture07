@@ -11,7 +11,7 @@ describe("ListMovies component", () => {
   });
 
   it("shows movies", async () => {
-    const movies = [{ title: "movie 1 ()" }, { title: "movie 2 ()" }];
+    const movies = [{ title: "movie 1" }, { title: "movie 2" }];
     const domElement = document.createElement("div");
     await act(async () => {
       ReactDOM.render(<ListMovies listMovies={() => movies} />, domElement);
@@ -19,7 +19,7 @@ describe("ListMovies component", () => {
 
     expect(
       Array.from(domElement.querySelectorAll("h3")).map((e) => e.innerHTML)
-    ).toEqual(["movie 1", "movie 2"]);
+    ).toEqual(["movie 1 ()", "movie 2 ()"]);
 
     expect(domElement.innerHTML).toMatchSnapshot();
   });
