@@ -11,11 +11,8 @@ export function MoviesApi(mongoDatabase) {
           $in: ["Sweden"],
         },
         year: {
-          $eq: 1991,
+          $gte: 1991,
         },
-      })
-      .sort({
-        metacritic: -1,
       })
       .map(({ title, year, plot, poster }) => ({ title, year, plot, poster }))
       .limit(100)
