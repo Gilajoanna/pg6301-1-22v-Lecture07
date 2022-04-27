@@ -4,9 +4,7 @@ import { useLoading } from "./useLoading";
 function MovieCard({ movie: { title, year, plot, poster } }) {
   return (
     <div>
-      <h3>
-        {title} ({year})
-      </h3>
+      <h3>{title}</h3>
       {poster && <img src={poster} width={100} alt={"Movie Poster"} />}
       <div>{plot}</div>
     </div>

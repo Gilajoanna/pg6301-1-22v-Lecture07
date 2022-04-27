@@ -7,12 +7,11 @@ export function MoviesApi(mongoDatabase) {
     const movies = await mongoDatabase
       .collection("movies")
       .find({
-        title: { $eq: "Force Majeure" },
         countries: {
           $in: ["Sweden"],
         },
         year: {
-          $eq: 2014,
+          $eq: 1991,
         },
       })
       .sort({
